@@ -8,18 +8,17 @@
             <span class="label">Created:</span>
             {{ user.created_time | timeAgo }} ago
           </li>
-          <li><span class="label">Karma:</span> {{ user.karma || "-" }}</li>
-          <li v-if="user.about" class="about" v-html="user.about" />
+          <li>
+            <span class="label">Karma:</span>
+            {{ user.karma || "-" }}
+          </li>
+          <li v-if="user.about" class="about" v-html="user.about"/>
         </ul>
       </lazy-wrapper>
       <p class="links">
-        <a :href="'https://news.ycombinator.com/submitted?id=' + user.id"
-          >submissions</a
-        >
+        <a :href="'https://news.ycombinator.com/submitted?id=' + user.id">submissions</a>
         |
-        <a :href="'https://news.ycombinator.com/threads?id=' + user.id"
-          >comments</a
-        >
+        <a :href="'https://news.ycombinator.com/threads?id=' + user.id">comments</a>
       </p>
     </template>
     <template v-else>

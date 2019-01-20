@@ -1,16 +1,16 @@
 <template>
   <div class="view">
-    <item-list-nav :feed="feed" :page="page" :max-page="maxPage" />
+    <item-list-nav :feed="feed" :page="page" :max-page="maxPage"/>
 
     <lazy-wrapper :loading="loading">
       <transition :name="transition" mode="out-in">
         <div :key="displayedPage" class="news-list">
           <transition-group tag="ul" name="item">
-            <item v-for="item in displayedItems" :key="item.id" :item="item" />
+            <item v-for="item in displayedItems" :key="item.id" :item="item"/>
           </transition-group>
         </div>
       </transition>
-      <item-list-nav :feed="feed" :page="page" :max-page="maxPage" />
+      <item-list-nav :feed="feed" :page="page" :max-page="maxPage"/>
     </lazy-wrapper>
   </div>
 </template>

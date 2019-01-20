@@ -1,7 +1,9 @@
 <template>
   <div class="item-view view">
     <div class="item-view-header">
-      <a :href="item.url" target="_blank"> <h1 v-html="item.title" /> </a>
+      <a :href="item.url" target="_blank">
+        <h1 v-html="item.title"/>
+      </a>
       <span v-if="item.url" class="host">({{ item.url | host }})</span>
       <p class="meta">
         {{ item.points }} points | by
@@ -13,17 +15,13 @@
       <lazy-wrapper :loading="item.loading">
         <p class="item-view-comments-header">
           {{
-            item.comments
-              ? item.comments.length + " comments"
-              : "No comments yet."
+          item.comments
+          ? item.comments.length + " comments"
+          : "No comments yet."
           }}
         </p>
         <ul class="comment-children">
-          <comment
-            v-for="comment in item.comments"
-            :key="comment.id"
-            :comment="comment"
-          />
+          <comment v-for="comment in item.comments" :key="comment.id" :comment="comment"/>
         </ul>
       </lazy-wrapper>
     </div>
