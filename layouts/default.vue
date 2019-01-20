@@ -5,24 +5,29 @@
         <router-link to="/" exact>
           <img class="logo" src="~assets/logo.png" alt="logo">
         </router-link>
-        <router-link v-for="(list, key) in feeds" :key="key" :to="`/${key}`">
-          {{ list.title }}
-        </router-link>
-        <a class="github" href="https://github.com/nuxt/hackernews" target="_blank" rel="noopener banner">
-          Built with Nuxt.js
-        </a>
+        <router-link v-for="(list, key) in feeds" :key="key" :to="`/${key}`">{{ list.title }}</router-link>
+        <a
+          class="github"
+          href="https://github.com/nuxt/hackernews"
+          target="_blank"
+          rel="noopener banner"
+        >Built with Nuxt.js</a>
       </nav>
     </header>
-    <nuxt nuxt-child-key="none" role="main" />
+    <nuxt nuxt-child-key="none" role="main"/>
   </div>
 </template>
 
-<script>
+<script  lang="ts">
+import { Component, Vue } from "nuxt-property-decorator"
+
 import { feeds } from "~/common/api"
 
-export default {
+@Component({})
+export default class Layout extends Vue {
   head() {
-    const host = process.server
+    // hack `(process as any)` to wait till this is fixed in Nuxt
+    const host = (process as any).server
       ? this.$ssrContext.req.headers.host
       : window.location.host
 
@@ -32,9 +37,10 @@ export default {
         { rel: "canonical", href: `https://${host}${this.$route.path}` }
       ]
     }
-  },
-  computed: {
-    feeds: () => feeds
+  }
+
+  get feeds() {
+    return feeds
   }
 }
 </script>

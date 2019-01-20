@@ -8,26 +8,22 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    feed: {
-      type: String,
-      required: true
-    },
-    page: {
-      type: Number,
-      required: true
-    },
-    maxPage: {
-      type: Number,
-      required: true
-    }
-  },
-  computed: {
-    hasMore() {
-      return this.page < this.maxPage
-    }
+<script lang="ts">
+import { Component, Prop, Vue } from "nuxt-property-decorator"
+
+@Component({})
+export default class ItemListNav extends Vue {
+  @Prop({ type: String, required: true })
+  feed!: string
+
+  @Prop({ type: Number, required: true })
+  page!: number
+
+  @Prop({ type: Number, required: true })
+  maxPage!: number
+
+  get hasMore() {
+    return this.page < this.maxPage
   }
 }
 </script>

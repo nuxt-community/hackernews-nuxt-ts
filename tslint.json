@@ -1,0 +1,37 @@
+{
+  "defaultSeverity": "warning",
+  "extends": [
+    "tslint:recommended",
+    "tslint-config-prettier"
+  ],
+  "rulesDirectory": ["tslint-plugin-prettier"],
+  "jsRules": {
+    "object-literal-sort-keys": false,
+    "ordered-imports": false,
+    "no-console": false,
+    "no-shadowed-variable": false,
+    "no-empty": [true, "allow-empty-functions"],
+    "curly": [true, "ignore-same-line"]
+  },
+  "rules": {
+    "prettier": true,
+    "member-access": [true, "no-public"],
+    "variable-name": [true, "allow-leading-underscore"],
+    "interface-name": false,
+    "object-literal-sort-keys": false,
+    "ordered-imports": false,
+    "no-console": false,
+    "no-empty": [true, "allow-empty-functions"],
+    "curly": [true, "ignore-same-line"],
+    "no-bitwise": false
+  },
+  "linterOptions": {
+    "exclude": [
+      "node_modules/**",
+      "dist/**",
+      "dist.js/**",
+      ".nuxt/**",
+      "tests/**"
+    ]
+  }
+}

@@ -1,7 +1,8 @@
-export const lazy = (commit, task, optimistic, enabled) => {
+export const lazy = (commit, task, optimistic, enabled = false) => {
   // By default, do lazy operations only in client
   if (enabled === undefined) {
-    enabled = process.client
+    // hack `(process as any)` to wait till this is fixed in Nuxt
+    enabled = (process as any).client
   }
 
   // Non lazy mode

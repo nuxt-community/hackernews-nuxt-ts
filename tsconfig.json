@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "es2015", "es2016"],
+    "module": "es2015",
+    "moduleResolution": "node",
+    "outDir": "./dist.js",
+    "strict": true,
+    "noImplicitAny": false,
+
+    "allowJs": true,
+    "checkJs": true,
+
+    "allowSyntheticDefaultImports": true,
+    "suppressImplicitAnyIndexErrors": true,
+
+    "experimentalDecorators": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "removeComments": true,
+    "sourceMap": true,
+    "pretty": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./*"],
+      "@/*": ["./*"]
+    }
+  },
+  "include": [
+    "./index.d.ts",
+    "./**/*.ts",
+    "./**/*.vue"
+  ],
+  "exclude": [
+    ".nuxt",
+    ".vscode",
+    "dist",
+    "dist.js",
+    "node_modules"
+  ]
+}
