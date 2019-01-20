@@ -4,33 +4,34 @@
       <router-link :to="'/user/' + comment.user">{{ comment.user }}</router-link>
       {{ comment.time | timeAgo }} ago
     </div>
-    <div class="text" v-html="comment.content" />
+    <div class="text" v-html="comment.content"/>
     <div v-if="comment.comments && comment.comments.length" :class="{ open }" class="toggle">
-      <a @click="open = !open">{{ open ? '[-]' : '[+] ' + pluralize(comment.comments.length) + ' collapsed' }}
-      </a>
+      <a
+        @click="open = !open"
+      >{{ open ? '[-]' : '[+] ' + pluralize(comment.comments.length) + ' collapsed' }}</a>
     </div>
     <ul v-show="open" class="comment-children">
-      <comment v-for="childComment in comment.comments" :key="childComment.id" :comment="childComment" />
+      <comment
+        v-for="childComment in comment.comments"
+        :key="childComment.id"
+        :comment="childComment"
+      />
     </ul>
   </li>
 </template>
 
-<script>
-export default {
-  name: "Comment",
-  props: {
-    comment: {
-      type: Object,
-      required: true
-    }
-  },
-  data() {
-    return {
-      open: true
-    }
-  },
-  methods: {
-    pluralize: n => n + (n === 1 ? " reply" : " replies")
+<script lang="ts">
+import { Component, Prop, Vue } from "nuxt-property-decorator"
+
+@Component({})
+export default class Comment extends Vue {
+  @Prop({ type: Object, required: true })
+  comment: any
+
+  open: boolean = true
+
+  pluralize(n) {
+    return n + (n === 1 ? " reply" : " replies")
   }
 }
 </script>

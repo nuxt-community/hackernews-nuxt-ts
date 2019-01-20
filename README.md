@@ -1,8 +1,8 @@
 # Nuxt.js Hacker News
-HackerNews clone built with Nuxt.js.
+HackerNews clone built with Nuxt.js and TypeScript.
 
 <p align="center">
-  <a href="https://hn.nuxtjs.org" target="_blank">
+  <a href="https://codesandbox.io/s/1q478mzyvj" target="_blank">
     <img src="https://user-images.githubusercontent.com/5158436/27347011-428833aa-5604-11e7-9f43-a12e576e9b18.png" width="256px"
     ><br>
     Live Demo
@@ -42,12 +42,15 @@ npm run dev
 npm run build
 
 # serve in production mode
-npm start
+npm start 
 
-# validate code with ESLint (with Prettier)
+# run unit tests
+npm run test
+
+# validate code with TSLint (with Prettier)
 npm run lint
 
-# validate andf fix with ESLint (with Prettier)
+# validate andf fix with TSLint (with Prettier)
 npm run lintfix
 
 ```

@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Comment snapshot 1`] = `
+<li class="comment">
+  <div class="by"><a>thecosas</a>
+    1545943367 ago
+  </div>
+  <div class="text">
+    <p>Test</p>
+  </div>
+  <!---->
+  <ul class="comment-children"></ul>
+</li>
+`;

@@ -1,4 +1,10 @@
+const isDev = process.env.NODE_ENV !== "production"
+const consola = require("consola")
+
 export default {
+  mode: "spa",
+  modern: !isDev,
+  build: { useForkTsChecker: { logger: consola } },
   head: {
     titleTemplate: "Nuxt HN | %s",
     meta: [
@@ -7,10 +13,22 @@ export default {
         content:
           "https://user-images.githubusercontent.com/904724/26879447-689b56a8-4b91-11e7-968f-5eea1d6c71b4.png"
       },
-      { property: "twitter:card", content: "summary_large_image" },
-      { property: "twitter:site", content: "@nuxt_js" }
+      {
+        property: "twitter:card",
+        content: "summary_large_image"
+      },
+      {
+        property: "twitter:site",
+        content: "@nuxt_js"
+      }
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
+    link: [
+      {
+        rel: "icon",
+        type: "image/x-icon",
+        href: "/favicon.ico"
+      }
+    ]
   },
   loading: {
     color: "#59cc93"
@@ -23,12 +41,15 @@ export default {
   },
   modules: ["@nuxtjs/pwa", "@nuxtjs/component-cache", "@nuxtjs/axios"],
   axios: {
+    debug: isDev,
     proxy: true
   },
   proxy: {
     "/api": {
       target: "https://api.hnpwa.com/v0/",
-      pathRewrite: { "^/api/": "" }
+      pathRewrite: {
+        "^/api/": ""
+      }
     }
   },
   plugins: ["~/plugins/filters"],

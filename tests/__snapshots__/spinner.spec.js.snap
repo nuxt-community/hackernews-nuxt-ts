@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Spinner snapshot 1`] = `
+<svg width="44px" height="44px" viewBox="0 0 44 44" class="spinner show">
+  <circle fill="none" stroke-width="4" stroke-linecap="round" cx="22" cy="22" r="20" class="path"></circle>
+</svg>
+`;

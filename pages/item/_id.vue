@@ -1,12 +1,8 @@
 <template>
-  <div class="item-view view" >
+  <div class="item-view view">
     <div class="item-view-header">
-      <a :href="item.url" target="_blank">
-        <h1 v-html="item.title" />
-      </a>
-      <span v-if="item.url" class="host">
-        ({{ item.url | host }})
-      </span>
+      <a :href="item.url" target="_blank"> <h1 v-html="item.title" /> </a>
+      <span v-if="item.url" class="host">({{ item.url | host }})</span>
       <p class="meta">
         {{ item.points }} points | by
         <router-link :to="'/user/' + item.user">{{ item.user }}</router-link>
@@ -16,40 +12,53 @@
     <div class="item-view-comments">
       <lazy-wrapper :loading="item.loading">
         <p class="item-view-comments-header">
-          {{ item.comments ? item.comments.length + ' comments' : 'No comments yet.' }}
+          {{
+            item.comments
+              ? item.comments.length + " comments"
+              : "No comments yet."
+          }}
         </p>
         <ul class="comment-children">
-          <comment v-for="comment in item.comments" :key="comment.id" :comment="comment"/>
+          <comment
+            v-for="comment in item.comments"
+            :key="comment.id"
+            :comment="comment"
+          />
         </ul>
       </lazy-wrapper>
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue } from "nuxt-property-decorator"
+import { Context } from "index"
+
 import Comment from "~/components/comment.vue"
-import LazyWrapper from "~/components/lazy-wrapper"
+import LazyWrapper from "~/components/lazy-wrapper.vue"
 
-export default {
-  name: "ItemView",
-  components: { Comment, LazyWrapper },
-
+@Component({
+  components: {
+    Comment,
+    LazyWrapper
+  }
+})
+export default class ItemView extends Vue {
   head() {
     return {
       title: this.item.title
     }
-  },
+  }
 
-  computed: {
-    id() {
-      return this.$route.params.id
-    },
-    item() {
-      return this.$store.state.items[this.id]
-    }
-  },
+  get id() {
+    return this.$route.params.id
+  }
 
-  fetch({ store, params: { id } }) {
+  get item() {
+    return this.$store.state.items[this.id]
+  }
+
+  fetch({ store, params: { id } }: Context) {
     return store.dispatch("FETCH_ITEM", { id })
   }
 }

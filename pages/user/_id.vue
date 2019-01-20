@@ -5,15 +5,21 @@
       <lazy-wrapper :loading="user.loading">
         <ul class="meta">
           <li>
-          <span class="label">Created:</span> {{ user.created_time | timeAgo }} ago</li>
-          <li>
-          <span class="label">Karma:</span> {{ user.karma || '-' }}</li>
+            <span class="label">Created:</span>
+            {{ user.created_time | timeAgo }} ago
+          </li>
+          <li><span class="label">Karma:</span> {{ user.karma || "-" }}</li>
           <li v-if="user.about" class="about" v-html="user.about" />
         </ul>
       </lazy-wrapper>
       <p class="links">
-        <a :href="'https://news.ycombinator.com/submitted?id=' + user.id">submissions</a> |
-        <a :href="'https://news.ycombinator.com/threads?id=' + user.id">comments</a>
+        <a :href="'https://news.ycombinator.com/submitted?id=' + user.id"
+          >submissions</a
+        >
+        |
+        <a :href="'https://news.ycombinator.com/threads?id=' + user.id"
+          >comments</a
+        >
       </p>
     </template>
     <template v-else>
@@ -22,25 +28,31 @@
   </div>
 </template>
 
-<script>
-import LazyWrapper from "~/components/lazy-wrapper"
+<script lang="ts">
+import { Component, Vue } from "nuxt-property-decorator"
+import { Context } from "index"
+import LazyWrapper from "~/components/lazy-wrapper.vue"
 
-export default {
-  name: "UserView",
-
-  components: { LazyWrapper },
-
-  computed: {
-    user() {
-      return this.$store.state.users[this.$route.params.id]
-    }
-  },
+@Component({
+  components: {
+    LazyWrapper
+  }
+})
+export default class UserView extends Vue {
+  get user() {
+    return this.$store.state.users[this.$route.params.id]
+  }
 
   head() {
     return this.user ? this.user.id : "User not found"
-  },
+  }
 
-  fetch({ store, route: { params: { id } } }) {
+  fetch({
+    store,
+    route: {
+      params: { id }
+    }
+  }: Context) {
     return store.dispatch("FETCH_USER", { id })
   }
 }

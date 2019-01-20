@@ -1,6 +1,6 @@
 {
-  "name": "nuxt-hn",
-  "description": "Nuxt Hacker News",
+  "name": "nuxt-ts-hn",
+  "description": "Nuxt Typescript Hacker News",
   "version": "1.0.0",
   "author": "Evan You <yyx990803@gmail.com>",
   "contributors": [
@@ -12,9 +12,28 @@
     },
     {
       "name": "Pooya Parsa (@pi0)"
+    },
+    {
+      "name": "HG(@husayt)"
     }
   ],
   "private": true,
+  "babel": {
+    "env": {
+      "test": {
+        "presets": [
+          [
+            "@babel/preset-env",
+            {
+              "targets": {
+                "node": "current"
+              }
+            }
+          ]
+        ]
+      }
+    }
+  },
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
@@ -22,8 +41,12 @@
     "dev-spa": "nuxt dev --spa",
     "build-spa": "nuxt build --spa",
     "start-spa": "nuxt start --spa",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "lintfix": "eslint --fix --ext .js,.vue --ignore-path .gitignore ."
+    "tsc": "tsc --showConfig",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "testc": "tsc -p tsconfig.json",
+    "lint": "tslint --project .",
+    "lintfix": "tslint --fix --project ."
   },
   "now": {
     "alias": "hn.nuxtjs.org"
@@ -32,21 +55,54 @@
     "node": ">=8.0"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.3.0",
-    "@nuxtjs/component-cache": "^1.1.1",
-    "@nuxtjs/pwa": "2.0.8",
-    "apicache": "^1.2.1",
-    "express": "^4.16.3",
-    "nuxt-edge": "^2.0.0-25375479.ba18127"
+    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/component-cache": "1.1.4",
+    "@nuxtjs/pwa": "2.6.0",
+    "apicache": "1.2.3",
+    "express": "4.16.4",
+    "nuxt-edge": "2.4.0-25759244.498c4f11",
+    "nuxt-property-decorator": "1.3.1"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.2",
-    "eslint": "^4.19.1",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-prettier": "^2.6.0",
-    "eslint-plugin-vue": "^4.4.0",
-    "prettier": "^1.11.1",
+    "@babel/core": "^7.2.2",
+    "@types/jest": "^23.3.10",
+    "@types/node": "^10.12.12",
+    "@vue/test-utils": "^1.0.0-beta.27",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "latest",
+    "fork-ts-checker-webpack-plugin": "^0.5.2",
+    "jest": "^23.6.0",
+    "jest-serializer-vue": "^2.0.2",
+    "lodash-es": "4.17.11",
+    "prettier": "^1.15.3",
     "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.2"
+    "stylus-loader": "^3.0.2",
+    "ts-jest": "^23.10.5",
+    "ts-loader": "5.3.2",
+    "tslint": "^5.12.0",
+    "tslint-config-prettier": "^1.17.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "typescript": "^3.2.2",
+    "vue-jest": "^3.0.2"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "ts",
+      "json",
+      "vue"
+    ],
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/$1"
+    },
+    "transform": {
+      "^.+\\.js$": "babel-jest",
+      ".*\\.(vue)$": "vue-jest",
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "snapshotSerializers": [
+      "jest-serializer-vue"
+    ]
   }
 }

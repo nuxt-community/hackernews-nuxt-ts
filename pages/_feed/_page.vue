@@ -12,94 +12,101 @@
       </transition>
       <item-list-nav :feed="feed" :page="page" :max-page="maxPage" />
     </lazy-wrapper>
-
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Watch, Vue } from "nuxt-property-decorator"
+import { Context, Transition, Route } from "index"
+
 import Item from "~/components/item.vue"
 import ItemListNav from "~/components/item-list-nav.vue"
-import LazyWrapper from "~/components/lazy-wrapper"
+import LazyWrapper from "~/components/lazy-wrapper.vue"
 import { feeds, validFeeds } from "~/common/api"
 
-export default {
+@Component({
   components: {
     Item,
     ItemListNav,
     LazyWrapper
-  },
+  }
+})
+export default class Page extends Vue {
+  displayedPage: number = 1
+  transition:
+    | null
+    | string
+    | Transition
+    | ((to: Route, from: Route) => string) = "slide-right"
 
-  validate({ params: { feed } }) {
+  async asyncData({ route }: Context) {
+    return {
+      displayedPage: Number(route.params.page) || 1
+    }
+  }
+
+  validate({ params: { feed } }: Context) {
     return validFeeds.includes(feed)
-  },
+  }
 
-  fetch({ store, params: { feed, page = 1 } }) {
+  fetch({ store, params: { feed, page = 1 } }: Context) {
     return store.dispatch("FETCH_FEED", { feed, page })
-  },
+  }
 
   head() {
     return {
       title: feeds[this.$route.params.feed].title
     }
-  },
+  }
 
-  data() {
-    return {
-      transition: "slide-right",
-      displayedPage: Number(this.page) || 1
-    }
-  },
+  get feed() {
+    return this.$route.params.feed
+  }
 
-  computed: {
-    feed() {
-      return this.$route.params.feed
-    },
-    page() {
-      return Number(this.$route.params.page) || 1
-    },
-    maxPage() {
-      return feeds[this.feed].pages
-    },
-    pageData() {
-      return this.$store.state.feeds[this.feed][this.page]
-    },
-    displayedItems() {
-      return this.pageData.map(id => this.$store.state.items[id])
-    },
-    loading() {
-      return this.displayedItems.length === 0
-    }
-  },
+  get page() {
+    return Number(this.$route.params.page) || 1
+  }
 
-  watch: {
-    page: "pageChanged"
-  },
+  get maxPage() {
+    return feeds[this.feed].pages
+  }
+
+  get pageData() {
+    return this.$store.state.feeds[this.feed][this.page]
+  }
+
+  get displayedItems() {
+    return this.pageData.map(id => this.$store.state.items[id])
+  }
+
+  get loading() {
+    return this.displayedItems.length === 0
+  }
 
   mounted() {
     this.pageChanged(this.page)
-  },
+  }
 
-  methods: {
-    pageChanged(to, from = -1) {
-      if (to < 0 || to > this.maxPage) {
-        this.$router.replace(`/${this.feed}/1`)
-        return
-      }
-
-      // Prefetch next page
-      this.$store
-        .dispatch("FETCH_FEED", {
-          feed: this.feed,
-          page: this.page + 1,
-          prefetch: true
-        })
-        .catch(() => {})
-
-      this.transition =
-        from === -1 ? null : to > from ? "slide-left" : "slide-right"
-
-      this.displayedPage = to
+  @Watch("page")
+  pageChanged(to, from = -1) {
+    if (to < 0 || to > this.maxPage) {
+      this.$router.replace(`/${this.feed}/1`)
+      return
     }
+
+    // Prefetch next page
+    this.$store
+      .dispatch("FETCH_FEED", {
+        feed: this.feed,
+        page: this.page + 1,
+        prefetch: true
+      })
+      .catch(() => {})
+
+    this.transition =
+      from === -1 ? null : to > from ? "slide-left" : "slide-right"
+
+    this.displayedPage = to
   }
 }
 </script>
