@@ -1,5 +1,5 @@
 const isDev = process.env.NODE_ENV !== "production"
-const consola = require("consola")
+import consola from "consola"
 
 export default {
   mode: "spa",

@@ -35,12 +35,12 @@
     }
   },
   "scripts": {
-    "dev": "nuxt dev",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "dev-spa": "nuxt dev --spa",
-    "build-spa": "nuxt build --spa",
-    "start-spa": "nuxt start --spa",
+    "dev": "nuxt-ts dev",
+    "build": "nuxt-ts build",
+    "start": "nuxt-ts start",
+    "dev-spa": "nuxt-ts dev --spa",
+    "build-spa": "nuxt-ts build --spa",
+    "start-spa": "nuxt-ts start --spa",
     "tsc": "tsc --showConfig",
     "test": "jest",
     "test:watch": "jest --watchAll",
@@ -60,8 +60,8 @@
     "@nuxtjs/pwa": "2.6.0",
     "apicache": "1.2.3",
     "express": "4.16.4",
-    "nuxt-edge": "2.4.0-25759244.498c4f11",
-    "nuxt-property-decorator": "1.3.1"
+    "nuxt-property-decorator": "1.3.1",
+    "nuxt-ts-edge": "latest"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
