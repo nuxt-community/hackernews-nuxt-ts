@@ -1,4 +1,5 @@
 # Nuxt.js Hacker News TS
+
 HackerNews clone built with Nuxt.js and TypeScript.
 
 <p align="center">
@@ -29,7 +30,7 @@ Coming soon
 
 **Requires Node.js 6+**
 
-``` bash
+```bash
 # install dependencies
 npm install # or yarn
 
@@ -40,7 +41,7 @@ npm run dev
 npm run build
 
 # serve in production mode
-npm start 
+npm start
 
 # run unit tests
 npm run test

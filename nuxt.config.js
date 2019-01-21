@@ -6,7 +6,7 @@ export default {
   modern: !isDev,
   build: { useForkTsChecker: { logger: consola } },
   head: {
-    titleTemplate: "Nuxt HN | %s",
+    titleTemplate: "Nuxt HN TS | %s",
     meta: [
       {
         property: "og:image",
@@ -34,9 +34,9 @@ export default {
     color: "#59cc93"
   },
   manifest: {
-    name: "Nuxt Hacker News",
-    short_name: "Nuxt HN",
-    description: "HackerNews clone built with Nuxt.js",
+    name: "Nuxt Hacker News Typescript",
+    short_name: "Nuxt HN TS",
+    description: "HackerNews clone built with Nuxt.js & Typescript",
     theme_color: "#188269"
   },
   modules: ["@nuxtjs/pwa", "@nuxtjs/component-cache", "@nuxtjs/axios"],
