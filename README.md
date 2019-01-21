@@ -1,4 +1,4 @@
-# Nuxt.js Hacker News
+# Nuxt.js Hacker News TS
 HackerNews clone built with Nuxt.js and TypeScript.
 
 <p align="center">
