@@ -24,7 +24,11 @@ Coming soon
 - Critical Path CSS
 - PWA experience using [PWA Module](https://github.com/nuxt-community/pwa-module) with almost _zero config_
 - PRPL
-- Hot reloading dev environment integrated with [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/)
+- Hot reloading dev environment
+- [TSLint](https://palantir.github.io/tslint/) and [Prettier](https://prettier.io/) integration
+- Typescript 3
+- Storybook Integration (Coming Soon)
+- Snapshot and Unit Tests with Jest and [Vue-Test-Utils](https://vue-test-utils.vuejs.org/)  (Coming Soon)
 
 ## Build Setup
 
@@ -49,7 +53,7 @@ npm run test
 # validate code with TSLint (with Prettier)
 npm run lint
 
-# validate andf fix with TSLint (with Prettier)
+# validate and fix with TSLint (with Prettier)
 npm run lintfix
 
 ```
