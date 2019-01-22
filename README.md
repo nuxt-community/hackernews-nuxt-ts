@@ -1,6 +1,6 @@
-# Nuxt.js Hacker News TS
+# Nuxt Hacker News TS
 
-HackerNews clone built with Nuxt.js and TypeScript.
+HackerNews clone built with Nuxt.js and TypeScript showcasing best practices of developing real life modern  isomorphic Web App with [Nuxt](https://github.com/nuxt/nuxt.js).
 
 <p align="center">
   <a href="https://codesandbox.io/s/github/nuxt-community/hackernews-nuxt-ts" target="_blank">
@@ -62,4 +62,4 @@ npm run lintfix
 
 MIT
 
-This repository is originally ported from [vue-hackernews-2.0](https://github.com/vuejs/vue-hackernews-2.0)
+This repository is originally ported from [vue-hackernews-2.0](https://github.com/vuejs/vue-hackernews-2.0) and [HackerNews Nuxt](https://github.com/nuxt/hackernews)
