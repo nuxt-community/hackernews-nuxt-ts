@@ -15,25 +15,12 @@
     },
     {
       "name": "HG(@husayt)"
+    },
+    {
+      "name": "Kevin Marrec (@kevinmarrec)"
     }
   ],
   "private": true,
-  "babel": {
-    "env": {
-      "test": {
-        "presets": [
-          [
-            "@babel/preset-env",
-            {
-              "targets": {
-                "node": "current"
-              }
-            }
-          ]
-        ]
-      }
-    }
-  },
   "scripts": {
     "dev": "nuxt-ts dev",
     "build": "nuxt-ts build",
@@ -60,29 +47,20 @@
     "@nuxtjs/pwa": "2.6.0",
     "apicache": "1.2.3",
     "express": "4.16.4",
-    "nuxt-property-decorator": "1.3.1",
+    "vue-property-decorator": "^7.3.0",
     "nuxt-ts-edge": "latest"
   },
   "devDependencies": {
-    "@babel/core": "^7.2.2",
-    "@types/jest": "^23.3.10",
-    "@types/node": "^10.12.12",
-    "@vue/test-utils": "^1.0.0-beta.27",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-jest": "latest",
-    "fork-ts-checker-webpack-plugin": "^0.5.2",
+    "@types/jest": "^23.3.13",
+    "@vue/test-utils": "^1.0.0-beta.28",
     "jest": "^23.6.0",
     "jest-serializer-vue": "^2.0.2",
-    "lodash-es": "4.17.11",
-    "prettier": "^1.15.3",
+    "prettier": "^1.16.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "ts-jest": "^23.10.5",
-    "ts-loader": "5.3.2",
-    "tslint": "^5.12.0",
     "tslint-config-prettier": "^1.17.0",
     "tslint-plugin-prettier": "^2.0.1",
-    "typescript": "^3.2.2",
     "vue-jest": "^3.0.2"
   },
   "jest": {
@@ -96,11 +74,10 @@
       "^@/(.*)$": "<rootDir>/$1"
     },
     "transform": {
-      "^.+\\.js$": "babel-jest",
       ".*\\.(vue)$": "vue-jest",
       "^.+\\.tsx?$": "ts-jest"
     },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.ts$",
     "snapshotSerializers": [
       "jest-serializer-vue"
     ]

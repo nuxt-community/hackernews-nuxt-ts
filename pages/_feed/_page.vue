@@ -16,8 +16,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Watch, Vue } from "nuxt-property-decorator"
-import { Context, Transition, Route } from "index"
+import { Component, Watch, Vue } from "vue-property-decorator"
+import { Transition } from "@nuxt/vue-app-edge"
+import { Route } from "vue-router"
 
 import Item from "~/components/item.vue"
 import ItemListNav from "~/components/item-list-nav.vue"
@@ -29,6 +30,22 @@ import { feeds, validFeeds } from "~/common/api"
     Item,
     ItemListNav,
     LazyWrapper
+  },
+  async asyncData({ route }) {
+    return {
+      displayedPage: Number(route.params.page) || 1
+    }
+  },
+  validate({ params: { feed } }) {
+    return validFeeds.includes(feed)
+  },
+  fetch({ store, params: { feed, page = 1 } }) {
+    return store.dispatch("FETCH_FEED", { feed, page })
+  },
+  head(this: Page) {
+    return {
+      title: feeds[this.$route.params.feed].title
+    }
   }
 })
 export default class Page extends Vue {
@@ -38,26 +55,6 @@ export default class Page extends Vue {
     | string
     | Transition
     | ((to: Route, from: Route) => string) = "slide-right"
-
-  async asyncData({ route }: Context) {
-    return {
-      displayedPage: Number(route.params.page) || 1
-    }
-  }
-
-  validate({ params: { feed } }: Context) {
-    return validFeeds.includes(feed)
-  }
-
-  fetch({ store, params: { feed, page = 1 } }: Context) {
-    return store.dispatch("FETCH_FEED", { feed, page })
-  }
-
-  head() {
-    return {
-      title: feeds[this.$route.params.feed].title
-    }
-  }
 
   get feed() {
     return this.$route.params.feed

@@ -28,31 +28,28 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "nuxt-property-decorator"
-import { Context } from "index"
+import { Component, Vue } from "vue-property-decorator"
 import LazyWrapper from "~/components/lazy-wrapper.vue"
 
 @Component({
   components: {
     LazyWrapper
-  }
-})
-export default class UserView extends Vue {
-  get user() {
-    return this.$store.state.users[this.$route.params.id]
-  }
-
-  head() {
+  },
+  head(this: UserView) {
     return this.user ? this.user.id : "User not found"
-  }
-
+  },
   fetch({
     store,
     route: {
       params: { id }
     }
-  }: Context) {
+  }) {
     return store.dispatch("FETCH_USER", { id })
+  }
+})
+export default class UserView extends Vue {
+  get user() {
+    return this.$store.state.users[this.$route.params.id]
   }
 }
 </script>

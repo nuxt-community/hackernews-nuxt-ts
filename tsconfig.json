@@ -1,35 +1,34 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "lib": ["esnext", "esnext.asynciterable", "dom"],
-    "module": "esnext",
     "moduleResolution": "node",
+    "lib": [
+      "esnext",
+      "esnext.asynciterable",
+      "dom"
+    ],
     "esModuleInterop": true,
-    "outDir": "./dist.js",
+    "experimentalDecorators": true,
+    "jsx": "preserve",
+    "sourceMap": true,
     "strict": true,
     "noImplicitAny": false,
-
-    "allowJs": true,
-    "checkJs": true,
-
-    "allowSyntheticDefaultImports": true,
-    "suppressImplicitAnyIndexErrors": true,
-
-    "experimentalDecorators": true,
     "noEmit": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "removeComments": true,
-    "sourceMap": true,
-    "pretty": true,
-
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./*"],
-      "@/*": ["./*"]
-    }
-  },
-  "include": ["./index.d.ts", "./**/*.ts", "./**/*.vue"],
-  "exclude": [".nuxt", ".vscode", "dist", "dist.js", "node_modules"],
-  "types": ["@types/node", "@nuxt/vue-app-edge"]
+      "~/*": [
+        "./*"
+      ],
+      "@/*": [
+        "./*"
+      ]
+    },
+    "types": [
+      "@types/jest",
+      "@types/node",
+      "@nuxt/vue-app-edge"
+    ]
+  }
 }

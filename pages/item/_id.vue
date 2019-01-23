@@ -29,8 +29,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "nuxt-property-decorator"
-import { Context } from "index"
+import { Component, Vue } from "vue-property-decorator"
 
 import Comment from "~/components/comment.vue"
 import LazyWrapper from "~/components/lazy-wrapper.vue"
@@ -39,25 +38,23 @@ import LazyWrapper from "~/components/lazy-wrapper.vue"
   components: {
     Comment,
     LazyWrapper
-  }
-})
-export default class ItemView extends Vue {
-  head() {
+  },
+  head(this: ItemView) {
     return {
       title: this.item.title
     }
+  },
+  fetch({ store, params: { id } }) {
+    return store.dispatch("FETCH_ITEM", { id })
   }
-
+})
+export default class ItemView extends Vue {
   get id() {
     return this.$route.params.id
   }
 
   get item() {
     return this.$store.state.items[this.id]
-  }
-
-  fetch({ store, params: { id } }: Context) {
-    return store.dispatch("FETCH_ITEM", { id })
   }
 }
 </script>

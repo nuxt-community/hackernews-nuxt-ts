@@ -4,7 +4,7 @@ import Vue from "vue"
 
 import { validFeeds } from "~/common/api"
 import { lazy } from "~/common/utils"
-import { CancelToken } from "axios"
+// import { CancelToken } from "axios"
 const baseUrl = "https://api.hnpwa.com/v0" // "/api"
 
 interface Dictionary<T> {
@@ -117,13 +117,13 @@ const actions: ActionTree<IRootState, any> = {
       prefetch = true
     }
     if (!prefetch) {
-      if (this.feedCancelSource) {
+      if ((this as any).feedCancelSource) {
         ;(this as any).feedCancelSource.cancel(
           "prioritize feed: " + feed + " page: " + page
         )
       }
 
-      this.feedCancelSource = CancelToken.source()
+      // ;(this as any).feedCancelSource = new CancelToken.source()
     }
 
     return lazy(
@@ -135,7 +135,8 @@ const actions: ActionTree<IRootState, any> = {
       () =>
         (this as any).$axios.$get(`${baseUrl}/${feed}/${page}.json`, {
           cancelToken:
-            this.feedCancelSource && (this as any).feedCancelSource.token
+            (this as any).feedCancelSource &&
+            (this as any).feedCancelSource.token
         }),
       (state.feeds[feed][page] || []).map(id => state.items[id])
     )
