@@ -1,10 +1,9 @@
-import { Vue, Component } from "nuxt-property-decorator"
-import { Context } from "index.d.ts"
-import { validFeeds } from "~/common/api.js"
+import { Vue, Component } from "vue-property-decorator"
+import { validFeeds } from "~/common/api"
 
-@Component({})
-export default class Index extends Vue {
-  fetch({ redirect }: Context) {
+@Component({
+  fetch({ redirect }) {
     redirect("/" + validFeeds[0])
   }
-}
+})
+export default class Index extends Vue {}

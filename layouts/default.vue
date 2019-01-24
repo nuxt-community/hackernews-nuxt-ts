@@ -19,15 +19,14 @@
 </template>
 
 <script  lang="ts">
-import { Component, Vue } from "nuxt-property-decorator"
+import { Component, Vue } from "vue-property-decorator"
 
 import { feeds } from "~/common/api"
 
-@Component({})
-export default class Layout extends Vue {
+@Component({
   head() {
     // hack `(process as any)` to wait till this is fixed in Nuxt
-    const host = (process as any).server
+    const host = process.server
       ? this.$ssrContext.req.headers.host
       : window.location.host
 
@@ -38,7 +37,8 @@ export default class Layout extends Vue {
       ]
     }
   }
-
+})
+export default class Layout extends Vue {
   get feeds() {
     return feeds
   }

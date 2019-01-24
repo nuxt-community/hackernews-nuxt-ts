@@ -1,10 +1,8 @@
 const isDev = process.env.NODE_ENV !== "production"
-import consola from "consola"
 
 export default {
   mode: "spa",
   modern: !isDev,
-  build: { useForkTsChecker: { logger: consola } },
   head: {
     titleTemplate: "Nuxt HN TS | %s",
     meta: [
@@ -53,7 +51,7 @@ export default {
     }
   },
   plugins: ["~/plugins/filters"],
-  serverMiddleware: ["~/common/cache.js"],
+  serverMiddleware: ["~/common/cache"],
   render: {
     http2: {
       push: true
