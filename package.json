@@ -33,7 +33,8 @@
     "test:watch": "jest --watchAll",
     "testc": "tsc -p tsconfig.json",
     "lint": "tslint --project .",
-    "lintfix": "tslint --fix --project ."
+    "lintfix": "tslint --fix --project .",
+    "post-update": "yarn upgrade --latest"
   },
   "now": {
     "alias": "hn.nuxtjs.org"
