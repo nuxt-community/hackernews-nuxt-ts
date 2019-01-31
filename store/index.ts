@@ -84,7 +84,7 @@ const s = (): IRootState => {
 }
 
 // =================================================
-// Actions
+// Mutations
 // =================================================
 const mutations: MutationTree<IRootState> = {
   SET_FEED: (state, { feed, ids, page }) => {
@@ -108,7 +108,7 @@ const mutations: MutationTree<IRootState> = {
 }
 
 // =================================================
-// Mutations
+// Actions
 // =================================================
 const actions: ActionTree<IRootState, any> = {
   FETCH_FEED({ commit, state }, { feed, page, prefetch }) {
