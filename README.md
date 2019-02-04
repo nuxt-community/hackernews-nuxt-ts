@@ -61,8 +61,10 @@ npm run lintfix
 ## Links
 For Nuxt JS version go [here](https://github.com/nuxt/hackernews)
 
+
+This repository is originally ported from [vue-hackernews-2.0](https://github.com/vuejs/vue-hackernews-2.0) and [HackerNews Nuxt](https://github.com/nuxt/hackernews)
+
 ## License
 
 MIT
 
-This repository is originally ported from [vue-hackernews-2.0](https://github.com/vuejs/vue-hackernews-2.0) and [HackerNews Nuxt](https://github.com/nuxt/hackernews)
