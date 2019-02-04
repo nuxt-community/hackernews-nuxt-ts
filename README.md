@@ -58,6 +58,9 @@ npm run lintfix
 
 ```
 
+## Links
+For Nuxt JS version go [here](https://github.com/nuxt/hackernews)
+
 ## License
 
 MIT
