@@ -1,6 +1,6 @@
 # Nuxt Hacker News TS
 
-HackerNews clone built with Nuxt.js and TypeScript showcasing best practices of developing real life modern  isomorphic Web App with [Nuxt](https://github.com/nuxt/nuxt.js).
+HackerNews clone built with Nuxt.js and TypeScript showcasing best practices of developing real life modern  isomorphic Web App with [Nuxt](https://github.com/nuxt/nuxt.js). This is a showcase app featuring best practices for developing real solutions with Nuxt TS integrated with TsLint (linting), Prettier (code formatting), Jest (testing), Storybook* (component playground)
 
 <p align="center">
   <a href="https://codesandbox.io/s/github/nuxt-community/hackernews-nuxt-ts" target="_blank">
