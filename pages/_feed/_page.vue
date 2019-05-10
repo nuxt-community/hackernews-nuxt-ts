@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { Component, Watch, Vue } from "vue-property-decorator"
-import { Transition } from "@nuxt/vue-app-edge"
+import { Transition } from "@nuxt/vue-app"
 import { Route } from "vue-router"
 
 import Item from "~/components/item.vue"
