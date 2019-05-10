@@ -22,12 +22,12 @@
   ],
   "private": true,
   "scripts": {
-    "dev": "nuxt-ts dev",
-    "build": "nuxt-ts build",
-    "start": "nuxt-ts start",
-    "dev-spa": "nuxt-ts dev --spa",
-    "build-spa": "nuxt-ts build --spa",
-    "start-spa": "nuxt-ts start --spa",
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "dev-spa": "nuxt dev --spa",
+    "build-spa": "nuxt build --spa",
+    "start-spa": "nuxt start --spa",
     "tsc": "tsc --showConfig",
     "test": "jest",
     "test:watch": "jest --watchAll",
@@ -48,10 +48,12 @@
     "@nuxtjs/pwa": "2.6.0",
     "apicache": "1.2.3",
     "express": "4.16.4",
-    "vue-property-decorator": "^7.3.0",
-    "nuxt-ts-edge": "latest"
+    "nuxt": "^2.6.3",
+    "ts-node": "^8.1.0",
+    "vue-property-decorator": "^7.3.0"
   },
   "devDependencies": {
+    "@nuxt/typescript": "^2.6.3",
     "@types/jest": "^23.3.13",
     "@vue/test-utils": "^1.0.0-beta.28",
     "jest": "^24.0.0",
