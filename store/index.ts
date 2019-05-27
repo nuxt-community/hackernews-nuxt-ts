@@ -5,7 +5,7 @@ import Vue from "vue"
 import { validFeeds } from "~/common/api"
 import { lazy } from "~/common/utils"
 // import { CancelToken } from "axios"
-const baseUrl = "https://api.hnpwa.com/v0" // "/api"
+const baseUrl = "/api" // https://api.hnpwa.com/v0" // "/api"
 
 interface Dictionary<T> {
   [key: string]: T

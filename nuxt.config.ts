@@ -1,6 +1,8 @@
+import NuxtConfiguration from "@nuxt/config"
+
 const isDev = process.env.NODE_ENV !== "production"
 
-export default {
+const config: NuxtConfiguration = {
   mode: "spa",
   modern: !isDev,
   head: {
@@ -66,3 +68,5 @@ export default {
     }
   }
 }
+
+export default config
