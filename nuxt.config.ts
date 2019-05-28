@@ -1,5 +1,8 @@
 import NuxtConfiguration from "@nuxt/config"
 
+// https://nuxtjs.org/api/configuration-env/
+const apiBaseUrl = process.env.NUXT_ENV_API_URL || "https://api.hnpwa.com/v0"
+
 const isDev = process.env.NODE_ENV !== "production"
 
 const config: NuxtConfiguration = {
@@ -40,13 +43,17 @@ const config: NuxtConfiguration = {
     theme_color: "#188269"
   },
   modules: ["@nuxtjs/pwa", "@nuxtjs/component-cache", "@nuxtjs/axios"],
+  env: {
+    apiBaseUrl
+  },
   axios: {
     debug: isDev,
-    proxy: true
+    proxy: true,
+    baseURL: apiBaseUrl
   },
   proxy: {
     "/api": {
-      target: "https://api.hnpwa.com/v0/",
+      target: apiBaseUrl,
       pathRewrite: {
         "^/api/": ""
       }

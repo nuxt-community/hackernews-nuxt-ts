@@ -1474,7 +1474,7 @@
     webpack-node-externals "^1.7.2"
     webpackbar "^3.2.0"
 
-"@nuxtjs/axios@^5.5.2":
+"@nuxtjs/axios@^5.3.6":
   version "5.5.2"
   resolved "https://registry.yarnpkg.com/@nuxtjs/axios/-/axios-5.5.2.tgz#b6447bb12707b56b16b942ae6c737a0b051cecba"
   integrity sha512-S5+IkUjCSSFeMVZp/JAzjoit9P7Di2QM4beAlFbHXbOEG+/vSaZReW8l817u9WC6nuKa3x6HhZfWD3tJDTvljg==
@@ -6926,6 +6926,20 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
+
+nuxt-start@^2.7.1:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/nuxt-start/-/nuxt-start-2.7.1.tgz#84b03164b0013bcfbc2b90432c1140bb7ee560e5"
+  integrity sha512-IRwTg3Uy33Njmg+geQWinfUeJ2qd+n1VqkgZEqN+80XKkw/LTW40rTm3LKCIVaflbX7Ekc8jI8YJ+M38egPWgQ==
+  dependencies:
+    "@nuxt/cli" "2.7.1"
+    "@nuxt/core" "2.7.1"
+    node-fetch "^2.5.0"
+    vue "^2.6.10"
+    vue-meta "^1.6.0"
+    vue-no-ssr "^1.1.1"
+    vue-router "^3.0.6"
+    vuex "^3.1.1"
 
 nuxt@^2.7.1:
   version "2.7.1"

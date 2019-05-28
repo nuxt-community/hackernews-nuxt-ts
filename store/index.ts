@@ -5,7 +5,10 @@ import Vue from "vue"
 import { validFeeds } from "~/common/api"
 import { lazy } from "~/common/utils"
 // import { CancelToken } from "axios"
-const baseUrl = "/api" // https://api.hnpwa.com/v0" // "/api"
+
+// process.env.NUXT_ENV_API_URL + apiBasePath
+// 'https://api.hnpwa.com/v0' + '/api'
+const apiBasePath = "/api"
 
 interface Dictionary<T> {
   [key: string]: T
@@ -133,7 +136,7 @@ const actions: ActionTree<IRootState, any> = {
         commit("SET_ITEMS", { items })
       },
       () =>
-        (this as any).$axios.$get(`${baseUrl}/${feed}/${page}.json`, {
+        (this as any).$axios.$get(`${apiBasePath}/${feed}/${page}.json`, {
           cancelToken:
             (this as any).feedCancelSource &&
             (this as any).feedCancelSource.token
@@ -145,7 +148,7 @@ const actions: ActionTree<IRootState, any> = {
   FETCH_ITEM({ commit, state }, { id }) {
     return lazy(
       item => commit("SET_ITEM", { item }),
-      () => (this as any).$axios.$get(`${baseUrl}/item/${id}.json`),
+      () => (this as any).$axios.$get(`${apiBasePath}/item/${id}.json`),
       Object.assign({ id, loading: true, comments: [] }, state.items[id])
     )
   },
@@ -153,7 +156,7 @@ const actions: ActionTree<IRootState, any> = {
   FETCH_USER({ state, commit }, { id }) {
     return lazy(
       user => commit("SET_USER", { id, user }),
-      () => (this as any).$axios.$get(`${baseUrl}/user/${id}.json`),
+      () => (this as any).$axios.$get(`${apiBasePath}/user/${id}.json`),
       Object.assign({ id, loading: true }, state.users[id])
     )
   }
