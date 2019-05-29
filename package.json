@@ -1,7 +1,12 @@
 {
   "name": "hackernews-nuxt-ts",
-  "description": "Nuxt Typescript Hacker News",
   "version": "1.0.0",
+  "private": true,
+  "description": "Nuxt TypeScript Hacker News",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nuxt-community/hackernews-nuxt-ts.git"
+  },
   "author": "Evan You <yyx990803@gmail.com>",
   "contributors": [
     {
@@ -20,57 +25,22 @@
       "name": "Kevin Marrec (@kevinmarrec)"
     }
   ],
-  "private": true,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/nuxt-community/hackernews-nuxt-ts.git"
-  },
   "scripts": {
-    "dev": "nuxt dev",
     "build": "nuxt build",
-    "start": "nuxt start",
+    "build:spa": "nuxt build --spa",
+    "dev": "nuxt dev",
     "dev-spa": "nuxt dev --spa",
-    "build-spa": "nuxt build --spa",
-    "start-spa": "nuxt start --spa",
-    "tsc": "tsc --showConfig",
-    "test": "jest",
-    "test:watch": "jest --watchAll",
-    "testc": "tsc -p tsconfig.json",
+    "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('koa-webapi-proxy must be installed with Yarn: https://yarnpkg.com/')\"",
     "lint": "tslint --project .",
-    "lintfix": "tslint --fix --project .",
-    "post-update": "yarn upgrade --latest"
-  },
-  "now": {
-    "alias": "hn.nuxtjs.org"
-  },
-  "engines": {
-    "node": ">=8.0"
-  },
-  "dependencies": {
-    "@nuxtjs/axios": "^5.3.6",
-    "@nuxtjs/component-cache": "1.1.4",
-    "@nuxtjs/pwa": "2.6.0",
-    "apicache": "1.2.3",
-    "express": "4.16.4",
-    "nuxt-start": "^2.7.1",
-    "ts-node": "^8.2.0",
-    "vue-property-decorator": "^8.1.1"
-  },
-  "devDependencies": {
-    "nuxt": "^2.7.1",
-    "@nuxt/typescript": "^2.7.1",
-    "@types/jest": "^24.0.13",
-    "@vue/test-utils": "^1.0.0-beta.28",
-    "jest": "^24.8.0",
-    "jest-serializer-vue": "^2.0.2",
-    "prettier": "^1.17.1",
-    "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.2",
-    "ts-jest": "^24.0.2",
-    "tslint-config-prettier": "^1.18.0",
-    "tslint-plugin-prettier": "^2.0.1",
-    "vue-jest": "^3.0.4",
-    "tslint": "^5.0.0"
+    "lint:fix": "tslint --fix --project .",
+    "post-update": "yarn upgrade --latest",
+    "sort-package-json": "npx sort-package-json",
+    "start": "nuxt start",
+    "start-spa": "nuxt start --spa",
+    "test": "jest --detectOpenHandles",
+    "test:watch": "jest --watchAll --detectOpenHandles",
+    "testc": "tsc -p tsconfig.json",
+    "tsc": "tsc --showConfig"
   },
   "browserslist": [
     "last 1 version",
@@ -87,13 +57,46 @@
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/$1"
     },
+    "snapshotSerializers": [
+      "jest-serializer-vue"
+    ],
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.ts$",
     "transform": {
       ".*\\.(vue)$": "vue-jest",
       "^.+\\.tsx?$": "ts-jest"
-    },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.ts$",
-    "snapshotSerializers": [
-      "jest-serializer-vue"
-    ]
+    }
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/component-cache": "1.1.4",
+    "@nuxtjs/pwa": "2.6.0",
+    "apicache": "1.2.3",
+    "express": "4.16.4",
+    "nuxt-start": "^2.7.1",
+    "ts-node": "^8.2.0",
+    "vue-property-decorator": "^8.1.1"
+  },
+  "devDependencies": {
+    "@nuxt/typescript": "^2.7.1",
+    "@types/jest": "^24.0.13",
+    "@vue/test-utils": "^1.0.0-beta.28",
+    "jest": "^24.8.0",
+    "jest-serializer-vue": "^2.0.2",
+    "nuxt": "^2.7.1",
+    "prettier": "^1.17.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.0.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "typescript": "^3.4.1",
+    "vue-jest": "^3.0.4"
+  },
+  "engines": {
+    "node": ">=8.0"
+  },
+  "now": {
+    "alias": "hn.nuxtjs.org"
   }
 }

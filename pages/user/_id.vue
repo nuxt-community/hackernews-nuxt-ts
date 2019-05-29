@@ -29,7 +29,11 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator"
-import LazyWrapper from "~/components/lazy-wrapper.vue"
+
+const LazyWrapper = () =>
+  import(
+    /* webpackChunkName: "components--lazy-wrapper" */ "~/components/lazy-wrapper.vue"
+  )
 
 @Component({
   components: {
@@ -44,12 +48,12 @@ import LazyWrapper from "~/components/lazy-wrapper.vue"
       params: { id }
     }
   }) {
-    return store.dispatch("FETCH_USER", { id })
+    return store.dispatch("user/FETCH_USER", { id })
   }
 })
 export default class UserView extends Vue {
   get user() {
-    return this.$store.state.users[this.$route.params.id]
+    return this.$store.state.user.items[this.$route.params.id]
   }
 }
 </script>

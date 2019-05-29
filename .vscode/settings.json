@@ -1,0 +1,20 @@
+{
+  // https://code.visualstudio.com/docs/getstarted/settings
+  "editor.trimAutoWhitespace": true,
+  "editor.renderControlCharacters": true,
+  "editor.renderWhitespace": "all",
+  "files.trimTrailingWhitespace": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "vetur.validation.style": true,
+  "vetur.validation.template": true,
+  "[json]": {
+    "editor.formatOnSave": true
+  },
+  "[vue]": {
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
+  }
+}

@@ -8,10 +8,10 @@
         <router-link v-for="(list, key) in feeds" :key="key" :to="`/${key}`">{{ list.title }}</router-link>
         <a
           class="github"
-          href="https://github.com/nuxt/hackernews"
+          href="https://github.com/nuxt-community/hackernews-nuxt-ts"
           target="_blank"
           rel="noopener banner"
-        >Built with Nuxt.js</a>
+        >Built with Nuxt.js using TypeScript</a>
       </nav>
     </header>
     <nuxt nuxt-child-key="none" role="main"/>

@@ -7,6 +7,9 @@ yarn-error.log
 *.iml
 .nuxt
 .vscode
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/tasks.json
 
 static/manifest*.json
 static/sw.js

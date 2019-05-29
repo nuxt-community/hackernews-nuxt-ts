@@ -5,10 +5,22 @@
       {{ comment.time | timeAgo }} ago
     </div>
     <div class="text" v-html="comment.content"/>
-    <div v-if="comment.comments && comment.comments.length" :class="{ open }" class="toggle">
+    <div
+      v-if="comment.comments && comment.comments.length"
+      :class="{ open }"
+      class="toggle"
+    >
       <a
         @click="open = !open"
-      >{{ open ? '[-]' : '[+] ' + pluralize(comment.comments.length) + ' collapsed' }}</a>
+      >
+        <!--
+          We want minimal things going on here
+          So that when it's time to do i18n, it's just
+          going to be a matter of making sure we pass
+          strings through i18n’s $t() helpers.
+        -->
+        {{ pluralize(open, comment.comments.length) }}
+      </a>
     </div>
     <ul v-show="open" class="comment-children">
       <comment
@@ -30,8 +42,21 @@ export default class Comment extends Vue {
 
   open: boolean = true
 
-  pluralize(n) {
-    return n + (n === 1 ? " reply" : " replies")
+  pluralize (open, n) {
+    // Should we have vue-i18n;
+    // We could also leverage Intl.NumberFormat
+    // https://kazupon.github.io/vue-i18n/guide/number.html#custom-formatting
+    const number = n // this.$n(n)
+
+    // Should we have vue-i18n;
+    // We could use vue-i18n $tc helper
+    // Assuming 'replies' would be 'Replies collapsed | Reply collapsed | Replies collapsed'
+    // https://kazupon.github.io/vue-i18n/guide/pluralization.html
+    const textContent = n === 1 ? 'reply' : 'replies' // this.$tc('replies', n)
+
+    const append = open ? '' : 'collapsed' // this.$t('collapsed')
+
+    return `${number} ${textContent} ${append}`.trim()
   }
 }
 </script>
@@ -78,15 +103,24 @@ export default class Comment extends Vue {
     padding: 0.3em 0.5em;
     border-radius: 4px;
 
+    a:before {
+      // +
+      // https://unicode-table.com/en/002B/
+      content: '\002B';
+    }
+
     a {
       color: #828282;
       cursor: pointer;
     }
 
     &.open {
-      padding: 0;
       background-color: transparent;
-      margin-bottom: -0.5em;
+      a:before {
+        // −
+        // https://unicode-table.com/en/2212/
+        content: '\2212';
+      }
     }
   }
 }

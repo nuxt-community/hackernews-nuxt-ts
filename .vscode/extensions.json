@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "CoenraadS.bracket-pair-colorizer",
+    "editorconfig.editorconfig",
+    "gamunu.vscode-yarn",
+    "jasonnutter.search-node-modules",
+    "mrmlnc.vscode-attrs-sorter",
+    "octref.vetur",
+    "richie5um2.vscode-sort-json",
+    "sourcegraph.javascript-typescript",
+    "sysoev.language-stylus"
+  ]
+}

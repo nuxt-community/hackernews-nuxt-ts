@@ -31,8 +31,8 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator"
 
-import Comment from "~/components/comment.vue"
-import LazyWrapper from "~/components/lazy-wrapper.vue"
+const Comment = () => import(/* webpackChunkName: "components--comment" */ '~/components/comment.vue')
+const LazyWrapper = () => import(/* webpackChunkName: "components--lazy-wrapper" */ '~/components/lazy-wrapper.vue')
 
 @Component({
   components: {
@@ -45,7 +45,7 @@ import LazyWrapper from "~/components/lazy-wrapper.vue"
     }
   },
   fetch({ store, params: { id } }) {
-    return store.dispatch("FETCH_ITEM", { id })
+    return store.dispatch("feed/FETCH_ITEM", { id })
   }
 })
 export default class ItemView extends Vue {
@@ -54,7 +54,7 @@ export default class ItemView extends Vue {
   }
 
   get item() {
-    return this.$store.state.items[this.id]
+    return this.$store.state.feed.items[this.id]
   }
 }
 </script>

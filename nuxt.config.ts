@@ -1,9 +1,38 @@
 import NuxtConfiguration from "@nuxt/config"
+import { LogLevel, ensureValidLogLevel } from "./lib/runtime"
+import { workbox } from "./lib/runtime/nuxt/config"
+
+const {
+  NODE_ENV = "production",
+  NUXT_ENV_LOG_LEVEL = "error",
+  NUXT_ENV_ENABLE_WORKBOX = "nope",
+  NUXT_ENV_API_URL = "https://api.hnpwa.com/v0"
+} = process.env
 
 // https://nuxtjs.org/api/configuration-env/
-const apiBaseUrl = process.env.NUXT_ENV_API_URL || "https://api.hnpwa.com/v0"
+const apiBaseUrl = NUXT_ENV_API_URL
+const enableWorkbox: boolean = NUXT_ENV_ENABLE_WORKBOX === "true"
+const isDev: boolean = NODE_ENV !== "production"
+const logLevel: LogLevel = ensureValidLogLevel(NUXT_ENV_LOG_LEVEL)
 
-const isDev = process.env.NODE_ENV !== "production"
+const modules: string[] = ["@nuxtjs/component-cache", "@nuxtjs/axios"]
+if (enableWorkbox) {
+  modules.push("@nuxtjs/pwa")
+}
+
+const runtimeSwitches: { [key: string]: string | boolean } = {
+  apiBaseUrl,
+  enableWorkbox,
+  isDev,
+  logLevel,
+  modules: (modules || []).join(", ")
+}
+
+if (NUXT_ENV_LOG_LEVEL === "debug") {
+  process.env.DEBUG = "*,-stylus:*"
+}
+
+console.table({ ...runtimeSwitches }) // tslint:disable-line
 
 const config: NuxtConfiguration = {
   mode: "spa",
@@ -37,18 +66,18 @@ const config: NuxtConfiguration = {
     color: "#59cc93"
   },
   manifest: {
-    name: "Nuxt Hacker News Typescript",
+    name: "Nuxt Hacker News TypeScript",
     short_name: "Nuxt HN TS",
-    description: "HackerNews clone built with Nuxt.js & Typescript",
+    description: "HackerNews clone built with Nuxt.js & TypeScript",
     theme_color: "#188269"
   },
-  modules: ["@nuxtjs/pwa", "@nuxtjs/component-cache", "@nuxtjs/axios"],
+  modules,
   env: {
     apiBaseUrl
   },
   axios: {
     debug: isDev,
-    proxy: true,
+    proxy: isDev,
     baseURL: apiBaseUrl
   },
   proxy: {
@@ -59,6 +88,7 @@ const config: NuxtConfiguration = {
       }
     }
   },
+  workbox: workbox(enableWorkbox, isDev),
   plugins: ["~/plugins/filters"],
   serverMiddleware: ["~/common/cache"],
   render: {
@@ -66,10 +96,12 @@ const config: NuxtConfiguration = {
       push: true
     },
     static: {
-      maxAge: "1y",
+      maxAge: isDev ? 2000 : "1m",
       setHeaders(res, path) {
-        if (path.includes("sw.js")) {
-          res.setHeader("Cache-Control", `public, max-age=${15 * 60}`)
+        if (enableWorkbox) {
+          if (path.includes("sw.js")) {
+            res.setHeader("Cache-Control", `public, max-age=${15 * 60}`)
+          }
         }
       }
     }
