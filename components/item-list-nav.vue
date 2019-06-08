@@ -1,9 +1,9 @@
 <template>
   <div class="news-list-nav">
-    <router-link v-if="page > 1" :to="`/${feed}/${page - 1}`">&lt; prev</router-link>
+    <nuxt-link v-if="page > 1" :to="`/${feed}/${page - 1}`">&lt; prev</nuxt-link>
     <a v-else class="disabled">&lt; prev</a>
     <span>{{ page }}/{{ maxPage }}</span>
-    <router-link v-if="hasMore" :to="`/${feed}/${page + 1}`">more &gt;</router-link>
+    <nuxt-link v-if="hasMore" :to="`/${feed}/${page + 1}`">more &gt;</nuxt-link>
     <a v-else class="disabled">more &gt;</a>
   </div>
 </template>
@@ -11,7 +11,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator"
 
-@Component({})
+@Component
 export default class ItemListNav extends Vue {
   @Prop({ type: String, required: true })
   feed!: string

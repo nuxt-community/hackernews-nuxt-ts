@@ -7,17 +7,19 @@
         <span class="host">({{ item.url | host }})</span>
       </template>
       <template v-else>
-        <router-link :to="'/item/' + item.id">{{ item.title }}</router-link>
+        <nuxt-link :to="'/item/' + item.id">{{ item.title }}</nuxt-link>
       </template>
     </span>
     <br>
     <span class="meta">
-      <span v-if="item.type !== 'job'" class="by">by
-        <router-link :to="'/user/' + item.user">{{ item.user }}</router-link>
+      <span v-if="item.type !== 'job'" class="by">
+        by
+        <nuxt-link :to="'/user/' + item.user">{{ item.user }}</nuxt-link>
       </span>
       <span class="time">{{ item.time | timeAgo }} ago</span>
-      <span v-if="item.type !== 'job'" class="comments-link">|
-        <router-link :to="'/item/' + item.id">{{ item.comments_count }} comments</router-link>
+      <span v-if="item.type !== 'job'" class="comments-link">
+        |
+        <nuxt-link :to="'/item/' + item.id">{{ item.comments_count }} comments</nuxt-link>
       </span>
     </span>
     <span v-if="item.type !== 'link'" class="label">{{ item.type }}</span>
@@ -29,7 +31,7 @@ import { Component, Prop, Vue } from "vue-property-decorator"
 
 import { timeAgo } from "~/plugins/filters"
 
-@Component({})
+@Component
 export default class NewsItem extends Vue {
   @Prop({ type: Object, required: true })
   item: any

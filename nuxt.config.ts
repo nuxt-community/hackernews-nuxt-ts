@@ -20,16 +20,17 @@ if (enableWorkbox) {
   modules.push("@nuxtjs/pwa")
 }
 
+if (NUXT_ENV_LOG_LEVEL === "debug") {
+  process.env.DEBUG = "*,-babel,-stylus:*"
+}
+
 const runtimeSwitches: { [key: string]: string | boolean } = {
   apiBaseUrl,
+  DEBUG: String(process.env.DEBUG),
   enableWorkbox,
   isDev,
   logLevel,
   modules: (modules || []).join(", ")
-}
-
-if (NUXT_ENV_LOG_LEVEL === "debug") {
-  process.env.DEBUG = "*,-stylus:*"
 }
 
 console.table({ ...runtimeSwitches }) // tslint:disable-line

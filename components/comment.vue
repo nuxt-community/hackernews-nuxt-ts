@@ -1,7 +1,7 @@
 <template>
   <li v-if="comment" class="comment">
     <div class="by">
-      <router-link :to="'/user/' + comment.user">{{ comment.user }}</router-link>
+      <nuxt-link :to="'/user/' + comment.user">{{ comment.user }}</nuxt-link>
       {{ comment.time | timeAgo }} ago
     </div>
     <div class="text" v-html="comment.content"/>
@@ -35,7 +35,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator"
 
-@Component({})
+@Component
 export default class Comment extends Vue {
   @Prop({ type: Object, required: true })
   comment: any

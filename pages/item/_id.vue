@@ -7,7 +7,7 @@
       <span v-if="item.url" class="host">({{ item.url | host }})</span>
       <p class="meta">
         {{ item.points }} points | by
-        <router-link :to="'/user/' + item.user">{{ item.user }}</router-link>
+        <nuxt-link :to="'/user/' + item.user">{{ item.user }}</nuxt-link>
         {{ item.time | timeAgo }} ago
       </p>
     </div>
