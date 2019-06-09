@@ -44,8 +44,8 @@ const LazyWrapper = () => import(/* webpackChunkName: "components--lazy-wrapper"
       title: this.item.title
     }
   },
-  fetch({ store, params: { id } }) {
-    return store.dispatch("feed/FETCH_ITEM", { id })
+  async fetch({ store, params: { id } }) {
+    await store.dispatch("feed/FETCH_ITEM", { id })
   }
 })
 export default class ItemView extends Vue {

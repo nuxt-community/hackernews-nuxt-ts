@@ -47,8 +47,8 @@ import { feeds, validFeeds } from "~/common/api"
   validate({ params: { feed } }) {
     return validFeeds.includes(feed)
   },
-  fetch({ store, params: { feed, page = 1 } }) {
-    return store.dispatch("feed/FETCH_FEED", { feed, page })
+  async fetch({ store, params: { feed, page = 1 } }) {
+    await store.dispatch("feed/FETCH_FEED", { feed, page })
   },
   head(this: Page) {
     return {

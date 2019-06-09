@@ -6,7 +6,7 @@ const {
   NODE_ENV = "production",
   NUXT_ENV_LOG_LEVEL = "error",
   NUXT_ENV_ENABLE_WORKBOX = "nope",
-  NUXT_ENV_API_URL = "https://api.hnpwa.com/v0"
+  NUXT_ENV_API_URL = "https://api.hackerwebapp.com"
 } = process.env
 
 // https://nuxtjs.org/api/configuration-env/

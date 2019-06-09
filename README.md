@@ -81,6 +81,7 @@ This repository is originally ported from [vue-hackernews-2.0](https://github.co
 - [vuex-class](https://github.com/ktsn/vuex-class/)
 - [vue-class-component](https://github.com/vuejs/vue-class-component)
 - [vue-i18n](https://github.com/kazupon/vue-i18n) ([docs](https://kazupon.github.io/vue-i18n/))
+- [Node.js HackerNews API **cheeaun/node-hnapi**](https://github.com/cheeaun/node-hnapi/) [example **/news?page=2**](https://api.hackerwebapp.com/news?page=2)
 
 ### Useful _TypeScript_ + _Nuxt.js_ community curated examples
 

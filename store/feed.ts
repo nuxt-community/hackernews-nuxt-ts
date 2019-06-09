@@ -64,7 +64,7 @@ export const actions: ActionTree<StoreStateFeed, StoreStateRoot> = {
         actionContext.commit(types.ITEMS, { items })
       },
       () =>
-        (this as any).$axios.$get(`${apiBasePath}/${feed}/${page}.json`, {
+        (this as any).$axios.$get(`${apiBasePath}/${feed}?page=${page}`, {
           cancelToken:
             (this as any).feedCancelSource &&
             (this as any).feedCancelSource.token
@@ -81,7 +81,7 @@ export const actions: ActionTree<StoreStateFeed, StoreStateRoot> = {
         actionContext.commit(types.SELECT, item.id)
         actionContext.commit(types.ITEM, { item })
       },
-      () => (this as any).$axios.$get(`${apiBasePath}/item/${id}.json`),
+      () => (this as any).$axios.$get(`${apiBasePath}/item/${id}`),
       Object.assign(
         { id, loading: true, comments: [] },
         actionContext.state.items[id]

@@ -16,6 +16,9 @@ export const types = {
   ITEM: "SET_ITEM"
 }
 
+/**
+ * https://github.com/cheeaun/node-hnapi/wiki/API-Documentation
+ */
 export const state = (): StoreStateUser => {
   const out: StoreStateUser = {
     items: {
@@ -30,7 +33,7 @@ export const actions: ActionTree<StoreStateUser, StoreStateRoot> = {
   FETCH_USER(actionContext, { id }) {
     return lazy(
       user => actionContext.commit(types.ITEM, { id, user }),
-      () => (this as any).$axios.$get(`${apiBasePath}/user/${id}.json`),
+      () => (this as any).$axios.$get(`${apiBasePath}/user/${id}`),
       Object.assign({ id, loading: true }, actionContext.state.items[id])
     )
   }

@@ -39,16 +39,13 @@ const LazyWrapper = () =>
   components: {
     LazyWrapper
   },
-  head(this: UserView) {
-    return this.user ? this.user.id : "User not found"
-  },
-  fetch({
+  async fetch({
     store,
     route: {
       params: { id }
     }
   }) {
-    return store.dispatch("user/FETCH_USER", { id })
+    await store.dispatch("user/FETCH_USER", { id })
   }
 })
 export default class UserView extends Vue {

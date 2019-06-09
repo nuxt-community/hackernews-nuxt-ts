@@ -28,13 +28,13 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator"
-
+import { Item } from "~/lib/models"
 import { timeAgo } from "~/plugins/filters"
 
 @Component
 export default class NewsItem extends Vue {
   @Prop({ type: Object, required: true })
-  item: any
+  item: Item
 
   // http://ssr.vuejs.org/en/caching.html#component-level-caching
   serverCacheKey({ item: { id, __lastUpdated, time } }) {
