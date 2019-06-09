@@ -1,6 +1,6 @@
 
 <script>
-import Spinner from "./spinner.vue"
+import Spinner from "~/components/spinner"
 
 export default {
   functional: true,

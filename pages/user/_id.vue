@@ -29,27 +29,28 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator"
-import LazyWrapper from "~/components/lazy-wrapper.vue"
+
+const LazyWrapper = () =>
+  import(
+    /* webpackChunkName: "components--lazy-wrapper" */ "~/components/lazy-wrapper.vue"
+  )
 
 @Component({
   components: {
     LazyWrapper
   },
-  head(this: UserView) {
-    return this.user ? this.user.id : "User not found"
-  },
-  fetch({
+  async fetch({
     store,
     route: {
       params: { id }
     }
   }) {
-    return store.dispatch("FETCH_USER", { id })
+    await store.dispatch("user/FETCH_USER", { id })
   }
 })
 export default class UserView extends Vue {
   get user() {
-    return this.$store.state.users[this.$route.params.id]
+    return this.$store.state.user.items[this.$route.params.id]
   }
 }
 </script>

@@ -7,7 +7,7 @@
       <span v-if="item.url" class="host">({{ item.url | host }})</span>
       <p class="meta">
         {{ item.points }} points | by
-        <router-link :to="'/user/' + item.user">{{ item.user }}</router-link>
+        <nuxt-link :to="'/user/' + item.user">{{ item.user }}</nuxt-link>
         {{ item.time | timeAgo }} ago
       </p>
     </div>
@@ -31,8 +31,8 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator"
 
-import Comment from "~/components/comment.vue"
-import LazyWrapper from "~/components/lazy-wrapper.vue"
+const Comment = () => import(/* webpackChunkName: "components--comment" */ '~/components/comment.vue')
+const LazyWrapper = () => import(/* webpackChunkName: "components--lazy-wrapper" */ '~/components/lazy-wrapper.vue')
 
 @Component({
   components: {
@@ -44,8 +44,8 @@ import LazyWrapper from "~/components/lazy-wrapper.vue"
       title: this.item.title
     }
   },
-  fetch({ store, params: { id } }) {
-    return store.dispatch("FETCH_ITEM", { id })
+  async fetch({ store, params: { id } }) {
+    await store.dispatch("feed/FETCH_ITEM", { id })
   }
 })
 export default class ItemView extends Vue {
@@ -54,7 +54,7 @@ export default class ItemView extends Vue {
   }
 
   get item() {
-    return this.$store.state.items[this.id]
+    return this.$store.state.feed.items[this.id]
   }
 }
 </script>

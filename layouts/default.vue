@@ -2,16 +2,16 @@
   <div id="app">
     <header class="header">
       <nav class="inner" role="navigation">
-        <router-link to="/" exact>
+        <nuxt-link to="/" exact>
           <img class="logo" src="~assets/logo.png" alt="logo">
-        </router-link>
-        <router-link v-for="(list, key) in feeds" :key="key" :to="`/${key}`">{{ list.title }}</router-link>
+        </nuxt-link>
+        <nuxt-link v-for="(list, key) in feeds" :key="key" :to="`/${key}`">{{ list.title }}</nuxt-link>
         <a
           class="github"
-          href="https://github.com/nuxt/hackernews"
+          href="https://github.com/nuxt-community/hackernews-nuxt-ts"
           target="_blank"
           rel="noopener banner"
-        >Built with Nuxt.js</a>
+        >Built with Nuxt.js using TypeScript</a>
       </nav>
     </header>
     <nuxt nuxt-child-key="none" role="main"/>
@@ -22,9 +22,11 @@
 import { Component, Vue } from "vue-property-decorator"
 
 import { feeds } from "~/common/api"
+import { NuxtPageHeadLink } from "~/lib/models"
 
-@Component({
-  head() {
+@Component
+export default class Layout extends Vue {
+  head(): { link: NuxtPageHeadLink[] } {
     // hack `(process as any)` to wait till this is fixed in Nuxt
     const host = process.server
       ? this.$ssrContext.req.headers.host
@@ -37,8 +39,7 @@ import { feeds } from "~/common/api"
       ]
     }
   }
-})
-export default class Layout extends Vue {
+
   get feeds() {
     return feeds
   }
@@ -87,8 +88,8 @@ a {
       color: #fff;
     }
 
-    &.router-link-active, &.nuxt-link-active {
-      color: #fff;
+    &.nuxt-link-active, &.nuxt-link-active {
+      text-decoration: underline solid #fff;
       font-weight: 400;
     }
 

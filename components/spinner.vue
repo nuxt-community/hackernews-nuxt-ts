@@ -24,7 +24,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator"
 
-@Component({})
+@Component
 export default class Spinner extends Vue {
   @Prop({ type: Boolean, required: true })
   show!: boolean

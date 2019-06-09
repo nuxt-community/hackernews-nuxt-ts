@@ -8,8 +8,11 @@
       "esnext.asynciterable",
       "dom"
     ],
+    "emitDecoratorMetadata": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
+    "jsx": "preserve",
+    "jsxFactory": "h",
     "allowJs": true,
     "sourceMap": true,
     "strict": true,
@@ -27,7 +30,11 @@
     "types": [
       "@types/jest",
       "@types/node",
+      "@nuxtjs/axios",
       "@nuxt/vue-app"
     ]
-  }
+  },
+  "include": [
+    "./**/*.ts"
+  ]
 }

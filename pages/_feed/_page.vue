@@ -20,9 +20,17 @@ import { Component, Watch, Vue } from "vue-property-decorator"
 import { Transition } from "@nuxt/vue-app"
 import { Route } from "vue-router"
 
-import Item from "~/components/item.vue"
-import ItemListNav from "~/components/item-list-nav.vue"
-import LazyWrapper from "~/components/lazy-wrapper.vue"
+const Item = () =>
+  import(/* webpackChunkName: "components--item" */ "~/components/item.vue")
+const ItemListNav = () =>
+  import(
+    /* webpackChunkName: "components--item-list-nav" */ "~/components/item-list-nav.vue"
+  )
+const LazyWrapper = () =>
+  import(
+    /* webpackChunkName: "components--lazy-wrapper" */ "~/components/lazy-wrapper.vue"
+  )
+
 import { feeds, validFeeds } from "~/common/api"
 
 @Component({
@@ -39,8 +47,8 @@ import { feeds, validFeeds } from "~/common/api"
   validate({ params: { feed } }) {
     return validFeeds.includes(feed)
   },
-  fetch({ store, params: { feed, page = 1 } }) {
-    return store.dispatch("FETCH_FEED", { feed, page })
+  async fetch({ store, params: { feed, page = 1 } }) {
+    await store.dispatch("feed/FETCH_FEED", { feed, page })
   },
   head(this: Page) {
     return {
@@ -57,23 +65,32 @@ export default class Page extends Vue {
     | ((to: Route, from: Route) => string) = "slide-right"
 
   get feed() {
-    return this.$route.params.feed
+    const params = this.$route.params
+    const { feed = "news" } = params
+    return feed
   }
 
   get page() {
-    return Number(this.$route.params.page) || 1
+    const { page = 1 } = this.$route.params
+    return Number(page) || 1
   }
 
   get maxPage() {
-    return feeds[this.feed].pages
+    // This comes from '~/common/api'
+    const feed = this.feed
+    return feeds[feed].pages
   }
 
   get pageData() {
-    return this.$store.state.feeds[this.feed][this.page]
+    const feed = this.feed || "news"
+    const page = this.page
+    const data = this.$store.state.feed.feeds[feed][page]
+    return data
   }
 
   get displayedItems() {
-    return this.pageData.map(id => this.$store.state.items[id])
+    const items = this.$store.state.feed.items
+    return this.pageData.map(id => items[id])
   }
 
   get loading() {
@@ -93,7 +110,7 @@ export default class Page extends Vue {
 
     // Prefetch next page
     this.$store
-      .dispatch("FETCH_FEED", {
+      .dispatch("feed/FETCH_FEED", {
         feed: this.feed,
         page: this.page + 1,
         prefetch: true
