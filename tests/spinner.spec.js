@@ -1,5 +1,5 @@
 import { shallowMount } from "@vue/test-utils"
-import Spinner from "@/components/spinner"
+import Spinner from "@/components/spinner.ts"
 
 describe("Spinner", () => {
   //   let wrapper = null
