@@ -1,6 +1,7 @@
+import { Configuration } from '@nuxt/types'
 const isDev = process.env.NODE_ENV !== "production"
 
-export default {
+const nuxtConfig: Configuration = {
   mode: "spa",
   modern: !isDev,
   head: {
@@ -42,6 +43,11 @@ export default {
     debug: isDev,
     proxy: true
   },
+  buildModules: ["@nuxt/typescript-build"],
+  typescript: {
+    typeCheck: true,
+    ignoreNotFoundWarnings: true
+  },
   proxy: {
     "/api": {
       target: "https://api.hnpwa.com/v0/",
@@ -66,3 +72,5 @@ export default {
     }
   }
 }
+
+module.exports = nuxtConfig
