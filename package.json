@@ -43,26 +43,26 @@
     "node": ">=8.0"
   },
   "dependencies": {
-    "@nuxt/typescript-runtime": "^0.2.0",
-    "@nuxtjs/axios": "^5.6.0",
+    "@nuxt/typescript-runtime": "^0.3.1",
+    "@nuxtjs/axios": "^5.8.0",
     "@nuxtjs/component-cache": "1.1.5",
     "@nuxtjs/pwa": "3.0.0-beta.19",
     "apicache": "1.5.2",
     "express": "4.17.1",
-    "nuxt": "^2.10.0",
-    "vue-property-decorator": "^8.2.2"
+    "nuxt": "^2.10.2",
+    "vue-property-decorator": "^8.3.0"
   },
   "devDependencies": {
-    "@nuxt/typescript-build": "^0.3.0",
-    "@types/jest": "^24.0.18",
-    "@vue/test-utils": "^1.0.0-beta.29",
+    "@nuxt/typescript-build": "^0.5.0",
+    "@types/jest": "^24.0.23",
+    "@vue/test-utils": "^1.0.0-beta.30",
+    "babel-core": "^6.26.3",
     "jest": "^24.9.0",
     "jest-serializer-vue": "^2.0.2",
-    "babel-core": "^6.26.3",
-    "prettier": "^1.18.2",
+    "prettier": "^1.19.1",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
-    "ts-jest": "^24.1.0",
+    "ts-jest": "^24.2.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-plugin-prettier": "^2.0.1",
     "vue-jest": "^3.0.5"
